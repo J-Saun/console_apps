@@ -9,14 +9,15 @@ const todos = [];
 
 while (input !== "quit" && input !== "q") {
   console.clear();
-  if (input === "cmd") {
+  if (input.toLowerCase() === "cmd") {
+    // input = prompt("What would you like to do?");
     console.clear();
     for (let i = 0; i < commands.length; i++) {
       console.log(commands[i]);
     }
     input = prompt("What would you like to do?");
   }
-  if (input === "list") {
+  if (input.toLowerCase() === "list") {
     console.clear();
     console.log("   Todo List  ");
     console.log("****************");
@@ -29,7 +30,7 @@ while (input !== "quit" && input !== "q") {
     }
     console.log("****************");
   }
-  if (input === "add") {
+  if (input.toLowerCase() === "add") {
     input = prompt("What would you like to add?");
     todos.push(input);
   }
