@@ -1,13 +1,13 @@
 console.clear();
 
 console.log("'cmd' for a list of commands");
-const commands = ["list", "add", "delete", "quit"];
+const commands = ["[L]ist", "[A]dd", "[D]elete", "[Q]uit"];
 
 let input = prompt("Welcome to the todo list!");
 
 const todos = [];
 
-// List Function
+// DRY List Function
 function list() {
   console.clear();
   console.log("   Todo List  ");
@@ -21,28 +21,32 @@ function list() {
   }
   console.log("****************");
 }
+// DRY Action Prompt Function
+function actionPrompt(action) {
+  input = prompt(`What would you like to ${action}?`);
+}
 
 while (input !== "quit" && input !== "q") {
   console.clear();
-  if (input.toLowerCase() === "cmd") {
+  if (input.toLowerCase() === "cmd" || input.toLowerCase() === "c") {
     // input = prompt("What would you like to do?");
     console.clear();
     for (let i = 0; i < commands.length; i++) {
       console.log(commands[i]);
     }
-    input = prompt("What would you like to do?");
+    actionPrompt("do");
   }
-  if (input.toLowerCase() === "list") {
+  if (input.toLowerCase() === "list" || input[0].toLowerCase() === "l") {
     list();
   }
-  if (input.toLowerCase() === "add") {
-    input = prompt("What would you like to add?");
+  if (input.toLowerCase() === "add" || input.toLowerCase() === "a") {
+    actionPrompt("add");
     todos.push(input);
   }
-  if (input.toLowerCase() === "delete") {
+  if (input.toLowerCase() === "delete" || input.toLowerCase() === "d") {
     console.clear();
     list();
-    input = prompt("What would you like to delete?");
+    actionPrompt("delete");
   }
 
   input = prompt("Welcome to the todo list!");
