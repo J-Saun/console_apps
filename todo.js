@@ -7,6 +7,21 @@ let input = prompt("Welcome to the todo list!");
 
 const todos = [];
 
+// List Function
+function list() {
+  console.clear();
+  console.log("   Todo List  ");
+  console.log("****************");
+
+  if (todos.length === 0) {
+    console.log("currently empty");
+  }
+  for (let i = 0; i < todos.length; i++) {
+    console.log(`${i + 1}: ${todos[i]}`);
+  }
+  console.log("****************");
+}
+
 while (input !== "quit" && input !== "q") {
   console.clear();
   if (input.toLowerCase() === "cmd") {
@@ -18,22 +33,18 @@ while (input !== "quit" && input !== "q") {
     input = prompt("What would you like to do?");
   }
   if (input.toLowerCase() === "list") {
-    console.clear();
-    console.log("   Todo List  ");
-    console.log("****************");
-
-    if (todos.length === 0) {
-      console.log("currently empty");
-    }
-    for (let i = 0; i < todos.length; i++) {
-      console.log(`${i + 1}: ${todos[i]}`);
-    }
-    console.log("****************");
+    list();
   }
   if (input.toLowerCase() === "add") {
     input = prompt("What would you like to add?");
     todos.push(input);
   }
+  if (input.toLowerCase() === "delete") {
+    console.clear();
+    list();
+    input = prompt("What would you like to delete?");
+  }
+
   input = prompt("Welcome to the todo list!");
 }
 console.clear();
