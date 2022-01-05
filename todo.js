@@ -1,74 +1,50 @@
 console.clear();
+
+// Style console responses
 const consoleStyle =
   "color: white; font-style: bold; background-color: orangered;padding: 3px";
-console.log("%c'[C]md' for a list of commands", consoleStyle);
-const commands = ["[L]ist", "[A]dd", "[D]elete", "[Q]uit"];
+console.log("%c'cmd' for a list of commands", consoleStyle);
 
-let input = prompt("Welcome to the todo list!");
+const commands = ["List", "Add", "Delete", "Quit"];
 
-const todos = [];
+let input = prompt("Welcome to the Todo List!");
 
-// DRY List Function
-function printList() {
-  console.clear();
-  console.log("%c     Todo List    ", consoleStyle);
-  console.log("%c******************", consoleStyle);
-
-  if (todos.length === 0) {
-    console.log("  Currently empty");
-  }
-  for (let i = 0; i < todos.length; i++) {
-    console.log(`${i + 1}: ${todos[i]}`);
-  }
-  console.log("%c******************", consoleStyle);
-}
-
-// // DRY Action Prompt Function
-function actionPrompt(action) {
-  input = prompt(`What would you like to ${action}?`);
-}
+const todoList = ["Walk bird", "Milk almonds"];
 
 while (input !== "quit" && input !== "q") {
-  console.clear();
-  if (input.toLowerCase() === "cmd" || input.toLowerCase() === "c") {
-    // input = prompt("What would you like to do?");
+  if (input.toLowerCase() === "cmd") {
     console.clear();
     for (let i = 0; i < commands.length; i++) {
       console.log(`%c${commands[i]}`, consoleStyle);
     }
-    actionPrompt("do");
-  }
-  if (input.toLowerCase() === "list" || input.toLowerCase() === "l") {
-    printList();
-  }
-  if (input.toLowerCase() === "add" || input.toLowerCase() === "a") {
-    actionPrompt("add");
-    todos.push(input);
-    // printList();
-    console.log(`${input} added to the list!`);
-  }
-  if (input.toLowerCase() === "delete" || input.toLowerCase() === "d") {
-    // printList();
-    actionPrompt("delete");
+  } else if (input.toLowerCase() === "list") {
+    console.clear();
+    console.log("%c     Todo List    ", consoleStyle);
+    console.log("%c******************", consoleStyle);
 
-    // revert back to 0 based index
-    const index = parseInt(input - 1);
-
-    // check for valid index number
+    if (todoList.length === 0) {
+      console.log("  Currently empty");
+    }
+    for (let i = 0; i < todoList.length; i++) {
+      console.log(`${i + 1}: ${todoList[i]}`);
+    }
+    console.log("%c******************", consoleStyle);
+  } else if (input.toLowerCase() === "add") {
+    const newTodo = prompt("What would you like to add?");
+    todoList.push(newTodo);
+    console.clear();
+    console.log(`${newTodo} has been added`);
+  } else if (input.toLowerCase() === "delete") {
+    const index = parseInt(prompt("Enter item to delete"));
     if (!Number.isNaN(index)) {
-      todos.splice(index, 1);
-      printList();
-
-      console.log(`Item ${input} removed from the list!`);
+      const deleted = todoList.splice(index - 1, 1);
+      console.log(`${deleted[0]} has been removed`);
     } else {
-      prompt("Please select a list number");
-      todos.splice(index, 1);
-      printList();
-      console.log(`Item ${input} removed from the list!`);
+      console.clear();
+      console.log("Please enter a valid item number");
     }
   }
-
-  input = prompt("Welcome to the todo list!");
+  input = prompt("What would you like to do?");
 }
 console.clear();
 console.log("%cGoodbye!", consoleStyle);
