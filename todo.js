@@ -4,16 +4,15 @@ function capitalize(string) {
   let lastLetters = string.slice(1, theRest);
   return firstLetter + lastLetters;
 }
-// capitalize("hello world");
+
 console.clear();
 
 // Style console responses
 const consoleStyle =
-  "color: white; font-style: bold; background-color: orangered;padding: 3px";
+  "color: white; font-style: bold; background-color: #d00000;padding: 4px";
 
 console.log("%c'cmd' for a list of commands", consoleStyle);
-
-const commands = ["List", "Add", "Delete", "Quit"];
+const commands = ["List", "Add", "Delete", "[Q]uit"];
 
 let input = prompt("Welcome to the Todo List!");
 
@@ -34,7 +33,7 @@ while (input !== "quit" && input !== "q") {
       console.log("  Currently empty");
     }
     for (let i = 0; i < todoList.length; i++) {
-      console.log(`${i + 1}: ${todoList[i]}`);
+      console.log(`${i + 1}: ${capitalize(todoList[i])}`);
     }
     console.log("%c******************", consoleStyle);
   } else if (input.toLowerCase() === "add") {
