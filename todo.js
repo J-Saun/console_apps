@@ -1,8 +1,16 @@
+function capitalize(string) {
+  let firstLetter = string[0].toUpperCase();
+  let theRest = string.length;
+  let lastLetters = string.slice(1, theRest);
+  return firstLetter + lastLetters;
+}
+// capitalize("hello world");
 console.clear();
 
 // Style console responses
 const consoleStyle =
   "color: white; font-style: bold; background-color: orangered;padding: 3px";
+
 console.log("%c'cmd' for a list of commands", consoleStyle);
 
 const commands = ["List", "Add", "Delete", "Quit"];
